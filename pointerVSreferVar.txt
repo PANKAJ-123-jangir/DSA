@@ -1,0 +1,160 @@
+# Pointer vs Reference — Quick Recall Notes (C++)
+
+---
+
+## Reference Variable (`&` in declaration)
+
+**Definition**
+A reference is another name (alias) of an existing variable.
+
+```cpp
+int a = 10;
+int &b = a;
+```
+
+Memory:
+
+```
+a and b → same memory location
+(no new memory created)
+```
+
+### Properties
+
+* Must be initialized at declaration
+* Cannot be NULL
+* Cannot change to refer another variable
+* No dereferencing needed
+* Safer than pointer
+
+### Effect
+
+```
+b = 20 → a becomes 20
+a = 30 → b becomes 30
+```
+
+### Main Uses
+
+* Pass by reference in functions
+* Avoid copying large objects
+* Cleaner syntax than pointers
+
+---
+
+## Pointer Variable (`*`)
+
+**Definition**
+A pointer stores the address of another variable.
+
+```cpp
+int a = 10;
+int *p = &a;
+```
+
+Memory:
+
+```
+a → value stored
+p → stores address of a
+```
+
+### Properties
+
+* Can be NULL
+* Can change target variable
+* Needs dereferencing (*p)
+* Has its own memory location
+
+### Effect
+
+```
+*p = 50 → a becomes 50
+```
+
+### Main Uses
+
+* Dynamic memory (new/delete)
+* Linked list, tree, graph
+* Low level memory control
+
+---
+
+## Meaning of `&` (IMPORTANT)
+
+| Usage         | Meaning               |
+| ------------- | --------------------- |
+| `int &b = a;` | Reference declaration |
+| `&a`          | Address of variable   |
+
+---
+
+## Function Parameter Passing
+
+### Pass by Value
+
+```cpp
+void fun(int x)
+```
+
+Copy created → original NOT changed
+
+---
+
+### Pass by Reference
+
+```cpp
+void fun(int &x)
+```
+
+Alias created → original changed
+
+Call:
+
+```cpp
+fun(a);
+```
+
+---
+
+### Pass by Pointer
+
+```cpp
+void fun(int *x)
+```
+
+Address passed
+
+Call:
+
+```cpp
+fun(&a);
+```
+
+---
+
+## Key Differences
+
+| Feature      | Reference           | Pointer           |
+| ------------ | ------------------- | ----------------- |
+| Nature       | Alias               | Address holder    |
+| Memory       | Same as original    | Separate variable |
+| NULL allowed | No                  | Yes               |
+| Can reassign | No                  | Yes               |
+| Syntax       | Simple              | Complex           |
+| Safety       | Safer               | Risky             |
+| Main purpose | Function parameters | Memory management |
+
+---
+
+## Golden Lines
+
+* Reference = same variable, different name
+* Pointer = variable storing address
+* `&` in declaration ≠ `&` in expression
+* `fun(a)` → reference behavior possible
+* `fun(&a)` → pointer behavior
+
+---
+
+## O
